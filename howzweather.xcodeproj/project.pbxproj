@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4D99ECC895686B3FA8B8E79D /* Pods_howzweather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA232C298FFD7F9ADB5F76B /* Pods_howzweather.framework */; };
 		56CD0B762A408CE91586E99A /* libPods-howzweatherUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 773EFDCAC0CCCFD70F517D25 /* libPods-howzweatherUITests.a */; };
+		5702B4421F58C4CE00D70453 /* WeatherDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5702B4411F58C4CE00D70453 /* WeatherDetailsVC.swift */; };
+		575DF2571F5BA25600D756EB /* MyFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DF2561F5BA25600D756EB /* MyFunctions.swift */; };
+		5768A4A61F59368800AA1D21 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5768A4A51F59365900AA1D21 /* Default-568h@2x.png */; };
 		577DC3741F4D1DC8003F5581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DC3731F4D1DC8003F5581 /* AppDelegate.swift */; };
 		577DC3761F4D1DC8003F5581 /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DC3751F4D1DC8003F5581 /* WeatherVC.swift */; };
 		577DC3791F4D1DC8003F5581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577DC3771F4D1DC8003F5581 /* Main.storyboard */; };
@@ -44,6 +47,9 @@
 /* Begin PBXFileReference section */
 		1DA232C298FFD7F9ADB5F76B /* Pods_howzweather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_howzweather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C6307FBB597F3B578A2732 /* libPods-howzweatherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-howzweatherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5702B4411F58C4CE00D70453 /* WeatherDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsVC.swift; sourceTree = "<group>"; };
+		575DF2561F5BA25600D756EB /* MyFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFunctions.swift; sourceTree = "<group>"; };
+		5768A4A51F59365900AA1D21 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		577DC3701F4D1DC8003F5581 /* howzweather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = howzweather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577DC3731F4D1DC8003F5581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		577DC3751F4D1DC8003F5581 /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 		577DC3671F4D1DC8003F5581 = {
 			isa = PBXGroup;
 			children = (
+				5768A4A51F59365900AA1D21 /* Default-568h@2x.png */,
 				577DC3721F4D1DC8003F5581 /* howzweather */,
 				577DC3871F4D1DC8003F5581 /* howzweatherTests */,
 				577DC3921F4D1DC8003F5581 /* howzweatherUITests */,
@@ -129,6 +136,7 @@
 				577DC3A31F4D1E1E003F5581 /* View */,
 				577DC3A41F4D1E2A003F5581 /* Controller */,
 				577DC3731F4D1DC8003F5581 /* AppDelegate.swift */,
+				5702B4411F58C4CE00D70453 /* WeatherDetailsVC.swift */,
 				577DC3751F4D1DC8003F5581 /* WeatherVC.swift */,
 				577DC3771F4D1DC8003F5581 /* Main.storyboard */,
 				577DC37A1F4D1DC8003F5581 /* Assets.xcassets */,
@@ -163,6 +171,7 @@
 				5795C1641F4DF42400A37FC9 /* CurrentWeather.swift */,
 				57F5F5D51F4FA6A600412A8C /* Forecast.swift */,
 				57F5F5D91F551E2500412A8C /* Location.swift */,
+				575DF2561F5BA25600D756EB /* MyFunctions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				577DC37E1F4D1DC8003F5581 /* LaunchScreen.storyboard in Resources */,
+				5768A4A61F59368800AA1D21 /* Default-568h@2x.png in Resources */,
 				577DC37B1F4D1DC8003F5581 /* Assets.xcassets in Resources */,
 				577DC3791F4D1DC8003F5581 /* Main.storyboard in Resources */,
 			);
@@ -503,11 +513,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				577DC3761F4D1DC8003F5581 /* WeatherVC.swift in Sources */,
+				5702B4421F58C4CE00D70453 /* WeatherDetailsVC.swift in Sources */,
 				577DC3741F4D1DC8003F5581 /* AppDelegate.swift in Sources */,
 				57F5F5D81F4FDF2900412A8C /* WeatherCell.swift in Sources */,
 				5795C1651F4DF42400A37FC9 /* CurrentWeather.swift in Sources */,
 				5795C1631F4DF1A100A37FC9 /* Constants.swift in Sources */,
 				57F5F5D61F4FA6A600412A8C /* Forecast.swift in Sources */,
+				575DF2571F5BA25600D756EB /* MyFunctions.swift in Sources */,
 				57F5F5DA1F551E2500412A8C /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

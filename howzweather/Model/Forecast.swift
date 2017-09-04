@@ -21,7 +21,7 @@ class Forecast {
     var date: String {
         if _date == nil {
             _date = ""
-        }
+         }
         return _date
     }
     var weatherType: String{

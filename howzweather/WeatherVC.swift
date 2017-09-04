@@ -10,13 +10,15 @@ import UIKit
 import CoreLocation
 import Alamofire
 
-class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
+class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate, ReturningFromWeatherDetails {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel! // will be used for City and Country
     @IBOutlet weak var currentWeatherImage: UIImageView!
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
+    
+    
     @IBOutlet weak var tableView: UITableView!
     
     let locationManager = CLLocationManager()
@@ -25,6 +27,8 @@ class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLo
     var currentWeather : CurrentWeather!
     var forecast: Forecast!
     var forecasts = [Forecast]()
+    
+    var returningFromWDVCValue: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +41,16 @@ class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLo
         tableView.delegate = self
         tableView.dataSource = self
         
+    /*    tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        tableView.separatorColor = UIColor.lightGray*/
+        
         currentWeather = CurrentWeather ()
          //forecast = Forecast()
-        
+         self.returningFromWDVCValue = false
+        print ("$$$$$$$$$$$$$$$\(self.returningFromWDVCValue)$$$$$$$$$$$$$$$")
     }
     
   override func viewDidAppear(_ animated: Bool) {
@@ -86,11 +97,19 @@ class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLo
         }
     }
     
+    
+    func setReturningFromWDVC(sendValue: Bool) {
+        
+        returningFromWDVCValue = sendValue
+        
+    }
+    
+    
     func updateMainUI(){
       dateLabel.text = currentWeather.date
       currentTempLabel.text = "\(currentWeather.currentTemp)°"
       currentWeatherTypeLabel.text = currentWeather.weatherType
-      locationLabel.text = currentWeather.cityName
+      locationLabel.text = currentWeather.cityName + ", " + currentWeather.countryName
         
         let currentHour = Location.sharedInstance.getCurrentHour()
         
@@ -101,6 +120,7 @@ class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLo
         }
  
       currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
+        
     }
     
     func downlaodForecastDetails(completed: @escaping DownloadComplete) {
@@ -112,9 +132,15 @@ class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLo
                     for obj in list {
                         let forecast  = Forecast(weatherDict: obj)
                         self.forecasts.append(forecast)
-                        print (obj)
+                       // print (obj)
                     }
-                    self.forecasts.remove(at: 0)
+                     //print ("<---------\(self.returningFromWDVCValue)-------->" )
+                      //print ("************************\(!self.returningFromWDVCValue)*********************")
+                     if self.returningFromWDVCValue != nil && self.returningFromWDVCValue == false   {
+                        //print ("@@@@@Removing Current Day@@@@@@")
+                        self.forecasts.remove(at: 0)
+                        //print ("@@@@@ Over Current Day@@@@@@")
+                        }
                     self.tableView.reloadData()
                 }
                 completed()
@@ -125,5 +151,19 @@ class WeatherVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLo
     }
     
     
-}
+    @IBAction func detialsButtonPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "WeatherDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! WeatherDetailsVC
+          destVC.myProtocol = self
+          destVC.currentWeatherInWeatherDetials = currentWeather!
+        
+    }
+    
+    
+    
+} 
 
